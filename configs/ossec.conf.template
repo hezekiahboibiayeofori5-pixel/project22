@@ -1,0 +1,41 @@
+<!--
+  Project000 Wazuh manager config template
+  Replace all <PLACEHOLDER> values before deploying.
+-->
+<ossec_config>
+  <global>
+    <jsonout_output>yes</jsonout_output>
+    <alerts_log>yes</alerts_log>
+    <logall>no</logall>
+    <email_notification>no</email_notification>
+  </global>
+
+  <remote>
+    <connection>secure</connection>
+    <port>1514</port>
+    <protocol>tcp</protocol>
+  </remote>
+
+  <ruleset>
+    <decoder_dir>ruleset/decoders</decoder_dir>
+    <rule_dir>ruleset/rules</rule_dir>
+    <rule_dir>etc/rules</rule_dir>
+    <list>etc/lists/audit-keys</list>
+  </ruleset>
+
+  <auth>
+    <disabled>no</disabled>
+    <port>1515</port>
+    <use_source_ip>no</use_source_ip>
+    <force_insert>yes</force_insert>
+    <purge>yes</purge>
+  </auth>
+
+  <!-- API key for external integrations — do not commit real value -->
+  <integration>
+    <name>slack</name>
+    <hook_url><SLACK_WEBHOOK_URL></hook_url>
+    <level>10</level>
+  </integration>
+
+</ossec_config>

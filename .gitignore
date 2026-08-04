@@ -1,0 +1,16 @@
+# Secrets / local config
+*.env
+*.key
+*_local.xml
+api_keys.txt
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Editor
+.vscode/
+.idea/
+
+# Logs
+*.log

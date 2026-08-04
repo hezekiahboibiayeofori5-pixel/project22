@@ -1,0 +1,37 @@
+<!--
+  Project000 custom detection rules
+  Group ID range: 100000-100999 reserved for local/custom rules
+-->
+<group name="local,project000,">
+
+  <!-- MITRE ATT&CK: T1059.001 (PowerShell) -->
+  <rule id="100010" level="10">
+    <if_group>windows</if_group>
+    <field name="win.eventdata.commandLine" type="pcre2">(?i)(-enc|-encodedcommand|frombase64string|invoke-expression|iex)</field>
+    <description>Suspicious PowerShell execution: encoded or obfuscated command detected</description>
+    <mitre>
+      <id>T1059.001</id>
+    </mitre>
+  </rule>
+
+  <!-- MITRE ATT&CK: T1003 (OS Credential Dumping) -->
+  <rule id="100011" level="12">
+    <if_group>windows</if_group>
+    <field name="win.eventdata.originalFileName" type="pcre2">(?i)(procdump|mimikatz|lsass)</field>
+    <description>Possible credential dumping activity detected on endpoint</description>
+    <mitre>
+      <id>T1003</id>
+    </mitre>
+  </rule>
+
+  <!-- MITRE ATT&CK: T1053.005 (Scheduled Task) -->
+  <rule id="100012" level="8">
+    <if_group>windows</if_group>
+    <field name="win.system.eventID">^4698$</field>
+    <description>New scheduled task created — verify against baseline</description>
+    <mitre>
+      <id>T1053.005</id>
+    </mitre>
+  </rule>
+
+</group>
